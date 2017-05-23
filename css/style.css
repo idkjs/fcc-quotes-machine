@@ -1,0 +1,45 @@
+body {
+    background-color: #2A3132;
+    color: white;
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+.quoteDisplay {
+    background-color: white;
+    color: #2A3132;
+    width: 50%;
+    margin: 20px auto 20px auto;
+    padding: 20px;
+    border-radius: 5px;
+    height: auto;
+}
+
+.quote {
+    font-size: 20px;
+}
+
+.author {
+    font-style: italic;
+}
+
+.btn-primary {
+    background-color: #2A3132;
+    margin: 20px 5px 10px;
+    border-color: #2A3132;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2A3132;
+}
+
+.btn-primary:focus {
+    background-color: #2A3132;
+}
+
+.btn-primary:target {
+    background-color: #2A3132;
+}
