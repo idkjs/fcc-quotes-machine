@@ -12,5 +12,6 @@
     <orderEntry type="library" name="axios" level="application" />
     <orderEntry type="library" name="react-dom" level="application" />
     <orderEntry type="library" name="react" level="application" />
+    <orderEntry type="library" name="styled-components" level="application" />
   </component>
 </module>

@@ -12,13 +12,13 @@ h1 {
     color: #2A3132;
     width: 50%;
     margin: 20px auto 20px auto;
-    padding: 20px;
+    padding: 60px;
     border-radius: 5px;
     height: auto;
 }
 
 .quote {
-    font-size: 20px;
+    font-size: 60px;
 }
 
 .author {
@@ -42,4 +42,26 @@ h1 {
 
 .btn-primary:target {
     background-color: #2A3132;
+}
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 80px;
+}
+
+.App-header {
+    background-color: #222;
+    width: 50%;
+    height: 150px;
+    padding: 20px;
+    color: white;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.App-intro {
+    font-size: large;
 }

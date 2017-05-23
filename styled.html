@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>FCC Random Quotes Challenge</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js'></script>
+    <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+
+    <script src='https://unpkg.com/styled-components/dist/styled-components.min.js'></script>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id='mountNode'></div>
+<script src='https://unpkg.com/babel-standalone@6/babel.min.js'></script>
+<!-- Your custom script here -->
+<script type="text/babel">
+
+  const Root = (props) => {
+    const Title = styled.h1`
+          font-size: 1.5em;
+          text-align: center;
+          color: palevioletred;
+        `;
+
+    // Create a <Wrapper> react component that renders a <section> with
+    // some padding and a papayawhip background
+    const Wrapper = styled.section`
+          padding: 4em;
+          background: papayawhip;
+        `;
+    return (
+            <Wrapper>
+                <Title>Hello World, this is my first styled component!</Title>
+            </Wrapper>
+    );
+  }
+
+  ReactDOM.render(<Root />, mountNode);
+</script>
+
+</body>
+</html>

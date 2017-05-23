@@ -2,8 +2,10 @@
   <dictionary name="devworx">
     <words>
       <w>axios</w>
+      <w>bootstrapcdn</w>
       <w>cdnjs</w>
       <w>cloudflare</w>
+      <w>maxcdn</w>
       <w>unpkg</w>
     </words>
   </dictionary>

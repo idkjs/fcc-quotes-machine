@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>FCC Random Quotes Challenge</title>
@@ -8,13 +8,15 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js'></script>
     <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+
+    <script src='https://unpkg.com/styled-components/dist/styled-components.min.js'></script>
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div id="mountNode"></div>
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<div id='mountNode'></div>
+<script src='https://unpkg.com/babel-standalone@6/babel.min.js'></script>
 <!-- Your custom script here -->
 <script type="text/babel">
       const Quote = (props) => {
@@ -81,7 +83,25 @@
           )
         }
       }
+      const Root = (props) => {
+        const Title = styled.h1`
+          font-size: 1.5em;
+          text-align: center;
+          color: palevioletred;
+        `;
 
+        // Create a <Wrapper> react component that renders a <section> with
+        // some padding and a papayawhip background
+        const Wrapper = styled.section`
+          padding: 4em;
+          background: papayawhip;
+        `;
+        return (
+                <Wrapper>
+                    <Title>Hello World, this is my first styled component!</Title>
+                </Wrapper>
+        );
+      }
       class QuoteApp extends React.Component {
         state = { quote:"Hey There! This is not a Quote but go ahead and click the button to get one!"}
         // this.addNewQuote = this.addNewQuote.bind(this)
@@ -92,9 +112,15 @@
         }
         render () {
           return (
-                  <div>
-                      <QuoteRend quote={this.state.quote}/>
-                      <Button onClick={this.addNewQuote}/>
+                  <div className="App">
+                      <div className="App-header">
+                          <img src="./fcc-logo.svg" className="App-logo" alt="logo" />
+                          <h2>The Random Quote Machine</h2>
+                      </div>
+                      <QuoteRend className="quoteDisplay" quote={this.state.quote}/>
+                      <Root />
+
+                      <Button className="btn-primary" onClick={this.addNewQuote}/>
                       <Tweet quote={this.state.quote}/>
                       <Attribution />
                   </div>
