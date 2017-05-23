@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>FCC Random Quotes Challenge</title>
@@ -10,125 +10,111 @@
     <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
 
     <script src='https://unpkg.com/styled-components/dist/styled-components.min.js'></script>
+    <script src='https://unpkg.com/babel-standalone@6/babel.min.js'></script>
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 
 <div id='mountNode'></div>
-<script src='https://unpkg.com/babel-standalone@6/babel.min.js'></script>
-<!-- Your custom script here -->
+
 <script type="text/babel">
-      const Quote = (props) => {
-        return (
-                <div style={{margin: '1em'}}>
-                    <div style={{display: 'inline-block', marginLeft:10}}>
-                        <div style={{fontSize: '1.25em', fontWeight: 'bold'}}>
-                          {props.quote}
-                        </div>
-                        <br></br>
-                        <div>Tweet It!....</div>
-                    </div>
-                </div>
-        );
-      };
+    const styled = styled.default;
+    const Attrib = styled.footer`
+      text-align: center;
+      margin: auto;
+      color: palevioletred;
+      font-weight: 500;
+      line-height: 2rem;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      margin-top: 5em;
+    `
+//      styled-button
+    const Buttons = styled.button`
+        font-size: 1em;
+        margin: 1em;
+        padding: 0.25em 1em;
+        border: 2px solid palevioletred;
+        border-radius: 3px;
 
-      const QuoteRend = (props) => {
-        return (
-                <div>
-                  {props.quote}
-                </div>
-        );
-      }
-
-      // Quote.rest Attribution
-      const Attribution = (props) => {
-        return (
-                <div style={{display: 'inline-block', marginLeft:10}}>
-                    <a href="https://formatics.com" title="Powered by quotes from formatics.com">
-                        formatics.com
-                    </a>
-                </div>
-        );
-      }
-      class Tweet extends React.Component {
-        tweetOut = (props) => {
-          const {quote} = this.props;
-          window.open("https://twitter.com/intent/tweet?text=" + quote);
-        }
-
-        render () {
-          return (
-                  <button onClick={this.tweetOut}>Tweet Quote</button>
-          )
-        }
-      }
-      // add button to generate new quote
-      class Button extends React.Component {
-//   disable cors for this to work. `open -a Google\ Chrome --args --disable-web-security --user-data-dir`
-        handleClick = (event) => {
-          event.preventDefault();
-          // console.log("Event: Handle Click");
-          axios.get(`https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en`)
-            .then(resp => {
-              const quote = resp.data.quoteText;
-              // this.setState({quote});
-              this.props.onClick({quote})
-              // console.log({quote});
-            });
-        };
-        render() {
-          return (
-                  <button onClick={this.handleClick}>Get Quote</button>
-          )
-        }
-      }
-      const Root = (props) => {
-        const Title = styled.h1`
+        /* Adapt colors based on primary prop */
+        background: ${props => props.primary && 'palevioletred'};
+        color: ${props => props.primary ? 'white' : 'palevioletred'};
+        float: ${props => props.float ? 'right' : 'left'};
+    `
+    const Header = styled.section`
+            font-size: 1.5em;
+            text-align: center;
+            color: palevioletred;
+            height: 50;
+        `
+    const Quote = styled.h1`
           font-size: 1.5em;
           text-align: center;
           color: palevioletred;
         `;
 
-        // Create a <Wrapper> react component that renders a <section> with
-        // some padding and a papayawhip background
-        const Wrapper = styled.section`
+    const Wrapper = styled.section`
           padding: 4em;
+          margin: auto;
+          width: 50%;
           background: papayawhip;
         `;
-        return (
-                <Wrapper>
-                    <Title>Hello World, this is my first styled component!</Title>
-                </Wrapper>
-        );
-      }
+
+      const App = styled.section`
+        height: auto;
+        color: white;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: auto;
+      `
+
       class QuoteApp extends React.Component {
         state = { quote:"Hey There! This is not a Quote but go ahead and click the button to get one!"}
-        // this.addNewQuote = this.addNewQuote.bind(this)
-
-        // handler for adding new quote. can call this from button component for it to do what we want.
-        addNewQuote = (quoteInfo) => {
-          this.setState(quoteInfo);
+        tweetIt = () => {
+          const {quote} = this.state;
+          window.open("https://twitter.com/intent/tweet?text=" + quote);
         }
+        handleClick = (event) => {
+          event.preventDefault();
+          axios.get(`https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en`)
+            .then(resp => {
+              const quote = resp.data.quoteText;
+               this.setState({quote});
+            });
+        };
         render () {
           return (
-                  <div className="App">
-                      <div className="App-header">
-                          <img src="./fcc-logo.svg" className="App-logo" alt="logo" />
+                  <App className="container">
+                      <Header>
                           <h2>The Random Quote Machine</h2>
-                      </div>
-                      <QuoteRend className="quoteDisplay" quote={this.state.quote}/>
-                      <Root />
-
-                      <Button className="btn-primary" onClick={this.addNewQuote}/>
-                      <Tweet quote={this.state.quote}/>
-                      <Attribution />
-                  </div>
+                      </Header>
+                      <Wrapper>
+                          <Quote>{this.state.quote}</Quote>
+                          <div className="row">
+                              <div className="col-xs-8 col-sm-6">
+                                  <Buttons onClick={this.tweetIt}>Tweet It!</Buttons>
+                              </div>
+                              <div className="col-xs-8 col-sm-6">
+                                  <Buttons primary onClick={this.handleClick}>Get Quote</Buttons>
+                              </div>
+                          </div>
+                          <Attrib>
+                              <div>
+                                  <a href="https://formatics.com" title="Powered by quotes from formatics.com">
+                                      Powered by quotes from formatics.com
+                                  </a><br></br>
+                                  <a href="https://freecodecamp.com" title="Inspired by freecodecamp.com">Inspired by freecodecamp.com</a>
+                              </div>
+                          </Attrib>
+                      </Wrapper>
+                  </App>
           )
         }
       }
       ReactDOM.render(<QuoteApp />, mountNode);
     </script>
-
 </body>
 </html>
